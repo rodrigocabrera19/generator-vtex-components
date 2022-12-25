@@ -4,23 +4,31 @@ import React, {
   useReducer,
   useState,
 } from "react";
-import VtexComponentsReducer from "./VtexComponentsReducer";
+import selectedComponentReducer from "../reducer/selectedComponentReducer";
+import VtexComponentsReducer from "../reducer/VtexComponentsReducer";
 
 //Creamos el contexto del componente.
 const VtexComponentsContext = createContext();
 
 //Componente que provee el contexto.
 export const VtexComponentsProvider = (props) => {
-  const [componentsProps, setcomponentsProps] = useState({
+
+  //Estado incial del selector de componentes a crear
+  const selectedComponent = '';
+  const [stateSelectedComponent, selectedComponentDispatch] = useReducer(selectedComponentReducer, selectedComponent);
+
+  //Estado inicial de las propiedades y complementos de los componentes
+  const componentsProps = {
     props: {
       
     },
     complementos: {
       name: "",
-      isChildren: false
+      isChildren: false,
+      isBlocks: false
     }
-  });
-
+  };
+  //Reduce para las propiedades del components
   const [state, dispatch] = useReducer(VtexComponentsReducer, componentsProps);
 
   const setProps = (e) => {
@@ -32,17 +40,22 @@ export const VtexComponentsProvider = (props) => {
     });
   };
 
-  const [richText, setRichText] = useState(null);
-  const creatorRichText = (propsComponents) => {
-    const richText = {
-      [`${propsComponents.complementos.name}#${propsComponents.complementos.name}`]: {
+  const [components, setComponents] = useState(null);
+  const creatorComponents = () => {
+    const { name, isChildren } = state.complementos;
+    const components = {
+      [`${stateSelectedComponent}#${name}`]: {
         props: {
-          ...propsComponents.props
+          ...state.props
         },
       },
     };
-    const JsonRichText = JSON.stringify(richText, null, 2);
-    setRichText(JsonRichText);
+
+    if(isChildren) {
+      components.children = []
+    }
+    const JsonComponents = JSON.stringify(components, null, 2);
+    setComponents(JsonComponents);
   };
 
   return (
@@ -50,8 +63,10 @@ export const VtexComponentsProvider = (props) => {
       value={{
         setProps,
         state,
-        creatorRichText,
-        richText,
+        creatorComponents,
+        components,
+        stateSelectedComponent,
+        selectedComponentDispatch
       }}
       {...props}
     />

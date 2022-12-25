@@ -1,13 +1,11 @@
-import React, { useMemo, useState } from "react";
 import { useVtexComponents } from "../context/VtexComponentsContext";
-import RichText from "../view/RichText";
 
 const CreateComponentsButton = () => {
-  const { state, creatorRichText } = useVtexComponents();
+  const { state, creatorComponents } = useVtexComponents();
 
   return (
     <div>
-      <button onClick={() => creatorRichText(state)}>Generator json</button>
+      <button onClick={() => creatorComponents()}>Generator json</button>
     </div>
   );
 };

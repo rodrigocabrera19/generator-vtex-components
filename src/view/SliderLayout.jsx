@@ -76,7 +76,6 @@ const Sliderlayout = () => {
             onChange={setProps}
             name="isChildren"
             value={state.complementos?.isChildren}
-            defaultChecked
           />
         </label>
       </section>

@@ -2,7 +2,6 @@ import React from "react";
 
 const VtexComponentsReducer = (state, action) => {
   const { type, payload } = action;
-  console.log(payload.checked);
   switch (type) {
     case "name":
       return {
@@ -86,7 +85,7 @@ const VtexComponentsReducer = (state, action) => {
       return {
         ...state,
         complementos: {
-          ...state.complementos.isChildren,
+          ...state.complementos,
           isChildren: payload.checked,
         },
       };
