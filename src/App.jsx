@@ -14,7 +14,7 @@ export default () => (
 );
 function App() {
   const { stateSelectedComponent } = useVtexComponents();
-  const TEXT_DEFAULT = "Debes seleccionar el componente que quieras crear";
+  const TEXT_DEFAULT = "Debes seleccionar el componente que quieres crear";
   return (
     <div className="App">
       {{
@@ -32,8 +32,9 @@ function App() {
         ),
       }[stateSelectedComponent] || (
         <>
+          <h1>Vtex json generator</h1>
           <ComponetsSelector />
-          {TEXT_DEFAULT}
+          <h2>{TEXT_DEFAULT}</h2>
         </>
       )}
     </div>
