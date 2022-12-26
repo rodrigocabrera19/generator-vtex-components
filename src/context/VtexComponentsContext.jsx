@@ -5,7 +5,7 @@ import React, {
   useState,
 } from "react";
 import selectedComponentReducer from "../reducer/selectedComponentReducer";
-import VtexComponentsReducer from "../reducer/VtexComponentsReducer";
+import vtexComponentsReducer from "../reducer/vtexComponentsReducer";
 
 //Creamos el contexto del componente.
 const VtexComponentsContext = createContext();
@@ -18,7 +18,7 @@ export const VtexComponentsProvider = (props) => {
   const [stateSelectedComponent, selectedComponentDispatch] = useReducer(selectedComponentReducer, selectedComponent);
 
   //Estado inicial de las propiedades y complementos de los componentes
-  const componentsProps = {
+  const initialState = {
     props: {
       
     },
@@ -29,7 +29,7 @@ export const VtexComponentsProvider = (props) => {
     }
   };
   //Reduce para las propiedades del components
-  const [state, dispatch] = useReducer(VtexComponentsReducer, componentsProps);
+  const [state, dispatch] = useReducer(vtexComponentsReducer, initialState);
 
   const setProps = (e) => {
     const type = e.target.name;
@@ -65,6 +65,7 @@ export const VtexComponentsProvider = (props) => {
         state,
         creatorComponents,
         components,
+        setComponents,
         stateSelectedComponent,
         selectedComponentDispatch
       }}

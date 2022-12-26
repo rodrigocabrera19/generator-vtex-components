@@ -1,15 +1,17 @@
 import React from "react";
 import { useVtexComponents } from "../context/VtexComponentsContext";
 
-const VtexComponent = ({ componentName }) => {
-  const { selectedComponentDispatch } = useVtexComponents();
+const VtexComponentName = ({ componentName }) => {
+  const { selectedComponentDispatch, setComponents } = useVtexComponents();
 
   const handlerSelector = (e) => {
     const typeComponent = e.target.value;
     selectedComponentDispatch({
       type: typeComponent,
       payload: typeComponent
-    })
+    });
+
+    setComponents(null)
   }
   return (
     <div>
@@ -21,4 +23,4 @@ const VtexComponent = ({ componentName }) => {
   );
 };
 
-export default VtexComponent;
+export default VtexComponentName;

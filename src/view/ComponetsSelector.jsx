@@ -1,5 +1,5 @@
 import React from "react";
-import VtexComponent from "../components/VtexComponent";
+import VtexComponentName from "../components/VtexComponentName";
 
 const ComponetsSelector = () => {
   const components = ["rich-text", "slider-layout"];
@@ -8,7 +8,7 @@ const ComponetsSelector = () => {
       {components.map((componentName) => {
         return (
           <div key={componentName}>
-            <VtexComponent componentName={componentName} />
+            <VtexComponentName componentName={componentName} />
           </div>
         );
       })}

@@ -14,28 +14,28 @@ export default () => (
 );
 function App() {
   const { stateSelectedComponent } = useVtexComponents();
-  switch (stateSelectedComponent) {
-    case "rich-text":
-      return (
-        <div className="App">
+  const TEXT_DEFAULT = "Debes seleccionar el componente que quieras crear";
+  return (
+    <div className="App">
+      {{
+        "rich-text": (
+          <>
+            <ComponetsSelector />
+            <RichText />
+          </>
+        ),
+        "slider-layout": (
+          <>
+            <ComponetsSelector />
+            <Sliderlayout />
+          </>
+        ),
+      }[stateSelectedComponent] || (
+        <>
           <ComponetsSelector />
-          <RichText />
-        </div>
-      );
-    case "slider-layout":
-      return (
-        <div className="App">
-          <ComponetsSelector />
-          <Sliderlayout />
-        </div>
-      );
-
-    default:
-      return (
-        <div className="App">
-          <ComponetsSelector />
-          <h2>Selecciona el componente que quieres crear...</h2>
-        </div>
-      );
-  }
-};
+          {TEXT_DEFAULT}
+        </>
+      )}
+    </div>
+  );
+}

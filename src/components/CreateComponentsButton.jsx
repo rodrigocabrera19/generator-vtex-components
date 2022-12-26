@@ -1,7 +1,7 @@
 import { useVtexComponents } from "../context/VtexComponentsContext";
 
 const CreateComponentsButton = () => {
-  const { state, creatorComponents } = useVtexComponents();
+  const { creatorComponents } = useVtexComponents();
 
   return (
     <div>

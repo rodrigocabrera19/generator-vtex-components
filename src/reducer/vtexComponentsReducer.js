@@ -1,6 +1,4 @@
-import React from "react";
-
-const VtexComponentsReducer = (state, action) => {
+const vtexComponentsReducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
     case "name":
@@ -94,4 +92,4 @@ const VtexComponentsReducer = (state, action) => {
   }
 };
 
-export default VtexComponentsReducer;
+export default vtexComponentsReducer;
