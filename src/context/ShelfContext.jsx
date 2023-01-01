@@ -1,28 +1,45 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useReducer, useState } from "react";
+import shelfReducer from "../reducer/shelfReducer";
+import { useVtexComponents } from "./VtexComponentsContext";
 
 //Creamos el contexto del componente.
 const ShelfContext = createContext();
 export const ShelfProvider = (props) => {
-  const initialState = {
-    "product-summary-name": "",
-    "product-summary-description": "",
-  };
+  const { initialState } = useVtexComponents();
   const [shelfChildren, setShelfChildren] = useState([]);
 
-  // const [shelfState, shelfDispatch] = useReducer(ShelfReducer, initialState);
+  const [shelfState, shelfDispatch] = useReducer(shelfReducer, initialState);
 
   const selectChildren = (e) => {
     const childrenComponent = e.target.name;
     setShelfChildren([...shelfChildren, childrenComponent]);
   };
 
+  const setProps = (e) => {
+    const type = e.target.name;
+    const payload = e.target;
+    shelfDispatch({
+      type,
+      payload,
+    });
+  };
+
   const [components, setComponents] = useState(null);
   const createComponents = (name) => {
-    const componentProductSummary = {
-      [`product-summary-shelf#${name}`]: {
-        children: shelfChildren,
-      },
-    };
+    const componentProductSummary = shelfChildren.reduce((acc, curr) => {
+      return {
+        ...acc,
+        [`product-summary-shelf#${name}`]: {
+          children: shelfChildren,
+        },
+        [`${curr}#${name}`]: {
+          props: {
+            ...shelfState.props,
+          },
+        },
+      };
+    }, {});
+
     const JsonProductSummaryShelf = JSON.stringify(
       componentProductSummary,
       null,
@@ -35,7 +52,9 @@ export const ShelfProvider = (props) => {
       value={{
         createComponents,
         components,
-        selectChildren
+        selectChildren,
+        shelfChildren,
+        setProps,
       }}
       {...props}
     />

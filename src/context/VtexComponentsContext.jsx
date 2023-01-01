@@ -66,7 +66,8 @@ export const VtexComponentsProvider = (props) => {
         components,
         setComponents,
         stateSelectedComponent,
-        selectedComponentDispatch
+        selectedComponentDispatch,
+        initialState
       }}
       {...props}
     />
