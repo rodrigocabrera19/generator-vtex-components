@@ -41,7 +41,7 @@ export const VtexComponentsProvider = (props) => {
   };
 
   const [components, setComponents] = useState(null);
-  const creatorComponents = () => {
+  const createComponents = () => {
     const { name, isChildren } = state.complementos;
     const components = {
       [`${stateSelectedComponent}#${name}`]: {
@@ -57,13 +57,12 @@ export const VtexComponentsProvider = (props) => {
     const JsonComponents = JSON.stringify(components, null, 2);
     setComponents(JsonComponents);
   };
-
   return (
     <VtexComponentsContext.Provider
       value={{
         setProps,
         state,
-        creatorComponents,
+        createComponents,
         components,
         setComponents,
         stateSelectedComponent,

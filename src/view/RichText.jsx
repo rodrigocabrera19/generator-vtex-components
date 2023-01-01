@@ -4,7 +4,7 @@ import JsonOutput from "../components/JsonOutput";
 import { useVtexComponents } from "../context/VtexComponentsContext";
 
 const RichText = () => {
-  const { setProps, state } = useVtexComponents();
+  const { setProps, state, createComponents, components } = useVtexComponents();
   return (
     <div>
       <h2>Props:</h2>
@@ -42,8 +42,8 @@ const RichText = () => {
           <input type="radio" name="position" value="RIGHT" />
         </label>
       </section>
-      <CreateComponentsButton/>
-      <JsonOutput/>
+      <CreateComponentsButton createComponents={createComponents} />
+      {components && <JsonOutput components={components} />}
     </div>
   );
 };

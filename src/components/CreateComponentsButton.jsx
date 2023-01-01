@@ -1,11 +1,8 @@
-import { useVtexComponents } from "../context/VtexComponentsContext";
-
-const CreateComponentsButton = () => {
-  const { creatorComponents } = useVtexComponents();
+const CreateComponentsButton = ({ createComponents, productSummaryShelfName }) => {
 
   return (
     <div>
-      <button onClick={() => creatorComponents()}>Generator json</button>
+      <button onClick={() => createComponents(productSummaryShelfName)}>Generator json</button>
     </div>
   );
 };

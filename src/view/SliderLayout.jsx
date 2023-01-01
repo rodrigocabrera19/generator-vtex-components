@@ -4,7 +4,7 @@ import JsonOutput from "../components/JsonOutput";
 import { useVtexComponents } from "../context/VtexComponentsContext";
 
 const Sliderlayout = () => {
-  const { setProps, state } = useVtexComponents();
+  const { setProps, state, createComponents, components } = useVtexComponents();
   return (
     <div>
       <h2>Props:</h2>
@@ -45,17 +45,9 @@ const Sliderlayout = () => {
       <section>
         <label onChange={setProps} htmlFor="infinite">
           infinite:
-          <input
-            type="radio"
-            name="infinite"
-            value="true"
-          />
+          <input type="radio" name="infinite" value="true" />
           Si
-          <input
-            type="radio"
-            name="infinite"
-            value="false"
-          />
+          <input type="radio" name="infinite" value="false" />
           No
         </label>
       </section>
@@ -79,8 +71,8 @@ const Sliderlayout = () => {
           />
         </label>
       </section>
-      <CreateComponentsButton />
-      <JsonOutput />
+      <CreateComponentsButton createComponents={createComponents} />
+      <JsonOutput components={components} />
     </div>
   );
 };

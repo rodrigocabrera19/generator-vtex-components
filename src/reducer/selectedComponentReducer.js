@@ -5,6 +5,8 @@ const selectedComponentReducer = (state, action) => {
       return payload;
     case "slider-layout":
       return payload;
+    case "product-summary-shelf":
+      return payload;
 
     default:
       return state;
