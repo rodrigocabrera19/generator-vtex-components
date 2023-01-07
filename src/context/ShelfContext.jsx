@@ -4,6 +4,8 @@ import { useVtexComponents } from "./VtexComponentsContext";
 
 //Creamos el contexto del componente.
 const ShelfContext = createContext();
+
+/* Provedor de states */
 export const ShelfProvider = (props) => {
   const { initialState } = useVtexComponents();
   const [shelfChildren, setShelfChildren] = useState([]);
@@ -12,7 +14,11 @@ export const ShelfProvider = (props) => {
 
   const selectChildren = (e) => {
     const childrenComponent = e.target.name;
-    setShelfChildren([...shelfChildren, childrenComponent]);
+    if (!shelfChildren.includes(childrenComponent)) {
+      setShelfChildren([...shelfChildren, childrenComponent]);
+    } else {
+      setShelfChildren(shelfChildren.filter((c) => c !== childrenComponent));
+    }
   };
 
   const setProps = (e) => {

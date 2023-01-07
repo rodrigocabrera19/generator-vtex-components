@@ -67,11 +67,7 @@ const ProductSummaryShelf = () => {
               "product-summary-description": (
                 <>elegiste el product summary description</>
               ),
-            }[children] || (
-              <>
-                <h2>Debes elegir algún componente hijo para el shelf</h2>
-              </>
-            )
+            }[children]
           );
         })
       )}
